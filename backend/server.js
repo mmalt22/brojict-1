@@ -7,15 +7,34 @@ const Todo = require("./Todo");
 
 // touch .gitignore
 
-const port = 3000;
+app.use(express.json())
 
-app.get("./", (req, res) => {
-  res.json("GET / is Working ...");
-});
-app.get("./tasks", (req, res) => {
+
+app.get("/", (req, res) => {
   res.json("GET / is Working ...");
 });
 
-app.listen(port, () => {
-  console.log("SERVER IS WORKING ...");
+app.get("/tasks", (req, res) => {
+  Todo.find({}, (err, data) => {
+    if (err) {
+      console.log("ERROR: ", err);
+    } else {
+      res.json(data);
+    }
+  });
+});
+
+app.post("/tasks", (req, res) => {
+    console.log('28:' , req.body)
+    Todo.create(req.body, (err, newTask) => {
+      if (err) {
+        console.log("ERROR: ", err);
+      } else {
+        res.status(201).json(newTask);
+      }
+    });
+  });
+
+app.listen(5000, () => {
+  console.log("SERVER IS WORKING ...")
 });

@@ -23,7 +23,6 @@ app.get("/tasks", (req, res) => {
   });
 });
 
-
 app.get("/filter", (req, res) => {
   console.log(req.query);
   Todo.find({ isCompleted: req.query.isCompleted }, (err, data) => {
@@ -35,7 +34,6 @@ app.get("/filter", (req, res) => {
     }
   });
 });
-
 
 /*
 
@@ -62,7 +60,7 @@ app.get("/not_completed", (req, res) => {
     }
   });
 });
-*/ 
+*/
 
 app.post("/tasks", (req, res) => {
   console.log("28:", req.body);
@@ -88,6 +86,20 @@ app.delete("/tasks/:id", (req, res) => {
   });
 });
 
+app.delete("/tasks", (req, res) => {
+  // console.log("39:", req.params.id);
+  Todo.deleteMany({ isCompleted: true }, (err, deleteObj) => {
+    if (err) {
+      console.log("ERROR: ", err);
+    } else {
+      console.log(deleteObj);
+      deleteObj.deletedCount === 0
+        ? res.status(404).json("There is no completed todo found")
+        : res.json("Delete all completed todo successfully");
+    }
+  });
+});
+
 app.put("/tasks/:id", (req, res) => {
   Todo.updateOne(
     { _id: req.params.id },
@@ -98,6 +110,23 @@ app.put("/tasks/:id", (req, res) => {
         res.status(400).json(err);
       } else {
         console.log(updateObj);
+        updateObj.modifiedCount === 1
+          ? res.json("update this todo successfully")
+          : res.status(404).json("This todo is not found");
+      }
+    }
+  );
+});
+
+app.put("/tasks/:id/:isCompleted", (req, res) => {
+  console.log("125", req.params);
+  Todo.updateOne(
+    { _id: req.params.id },{ isCompleted: req.params.isCompleted },(err, updateObj) => {
+      if (err) {
+        // console.log("ERROR: ", err);
+        res.status(400).json(err);
+      } else {
+        // console.log(updateObj);
         updateObj.modifiedCount === 1
           ? res.json("update this todo successfully")
           : res.status(404).json("This todo is not found");

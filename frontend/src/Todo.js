@@ -1,9 +1,14 @@
 import React from 'react'
 
-export default function Todo() {
+export default function Todo(props) {
+    const {_id ,title ,isCompleted }=props.task
   return (
     <div className='Todo'>
-        <p>Todo</p>
+          
+        <p>Title: {title}</p>
+        {/* <p>isCompleted: {isCompleted}</p> */}
+        {/* <p>id: {_id}</p> */}
+        
     </div>
   )
 }

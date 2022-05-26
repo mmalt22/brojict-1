@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const cors = require("cors")
 
 const db = require("./db");
 const Todo = require("./Todo");
@@ -8,6 +9,7 @@ const Todo = require("./Todo");
 // touch .gitignore
 
 app.use(express.json());
+app.use(cors())
 
 app.get("/", (req, res) => {
   res.json("GET / is Working ...");

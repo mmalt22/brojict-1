@@ -6,9 +6,12 @@ export default function Todo(props) {
     <div className='Todo'>
           
         <p>Title: {title}</p>
-        {/* <p>isCompleted: {isCompleted}</p> */}
-        {/* <p>id: {_id}</p> */}
+        <p>isCompleted: {isCompleted}</p>
+        {/* <input type="checkbox" name={isCompleted} 
+        value={isCompleted} />isCompleted */}
+        <p>id: {_id}</p>
         
+
     </div>
   )
 }

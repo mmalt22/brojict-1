@@ -37,8 +37,12 @@
   }
 }
 .App{
-  border: 1px red solid;
+  border: 2px red solid;
 }
 .Todo{
-  border: 1px red solid;
+margin: 0px 10px 0px 10px;
+border: 2px red solid;
+}
+.Add{
+  border: 2px green solid;
 }

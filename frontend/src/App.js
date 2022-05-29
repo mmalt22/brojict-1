@@ -14,7 +14,7 @@ export default function App() {
 
   const getData = () => {
     axios
-      .get('http://localhost:5000/tasks')
+      .get("http://localhost:5000/tasks")
       .then((response) => {
         // console.log('RESPONSE: ', response);
         console.log("DATA: ", response.data);
@@ -27,12 +27,12 @@ export default function App() {
 
   const postNewTodo = (body) => {
     axios
-      .post('http://localhost:5000/tasks', body)
+      .post("http://localhost:5000/tasks", body)
       .then((response) => {
         // console.log('RESPONSE: ', response);
         console.log("DATA: ", response.data);
         // setTasks(response.data);
-        getData()
+        getData();
         //   ندورها  في قوقل بدال جلب الداتا
         // change react state using spread operator
       })
@@ -49,14 +49,14 @@ export default function App() {
         // console.log('RESPONSE: ', response);
         console.log("DATA: ", response.data);
         // setTasks(response.data);
-        getData()
+        getData();
         //   ندورها  في قوقل بدال جلب الداتا
         // change react state using spread operator
       })
       .catch((err) => {
         console.log("ERR: ", err);
       });
-  }; 
+  };
 
   const ToogleTodo = (id, newStatus) => {
     axios
@@ -66,25 +66,68 @@ export default function App() {
         // console.log('RESPONSE: ', response);
         console.log("DATA: ", response.data);
         // setTasks(response.data);
-        getData()
+        getData();
         //   ندورها  في قوقل بدال جلب الداتا
         // change react state using spread operator
       })
       .catch((err) => {
         console.log("ERR: ", err);
       });
-  }; 
+  };
+
+  const deleteTasks = () => {
+    axios
+      .delete(`http://localhost:5000/tasks`)
+
+      .then((response) => {
+        // console.log('RESPONSE: ', response);
+        console.log("DATA: ", response.data);
+        // setTasks(response.data);
+        getData();
+        //   ندورها  في قوقل بدال جلب الداتا
+        // change react state using spread operator
+      })
+      .catch((err) => {
+        console.log("ERR: ", err);
+      });
+  };
+
+  const filterData = (status) => {
+    axios
+      .get(`http://localhost:5000/filter?isCompleted=${status}`)
+      .then((response) => {
+        // console.log('RESPONSE: ', response);
+        console.log("DATA: ", response.data);
+        setTasks(response.data);
+      })
+      .catch((err) => {
+        console.log("ERR: ", err);
+      });
+  };
 
   const mapOverTasks = tasks.map((taskObj, i) => (
-    <Todo key={i} task={taskObj} deleteTodo={deleteTodo} 
-    ToogleTodo={ToogleTodo}/>
+    <Todo
+      key={taskObj._id}
+      task={taskObj}
+      deleteTodo={deleteTodo}
+      ToogleTodo={ToogleTodo}
+    />
   ));
 
   return (
     <div className="App">
       <p>tuwaiq academy</p>
-      <Add createFunction={postNewTodo}/>
+      <Add createFunction={postNewTodo} />
       <button onClick={getData}>GET TASKS</button>
+      <button onClick={deleteTasks}>DELETE COMPLETED TASKS</button>
+      <button
+        onClick={() => {
+          filterData(true);
+        }}>GET DONE</button>
+      <button
+        onClick={() => {
+          filterData(false);
+        }}>GET PENDING</button>
       {/* <Todo/> */}
       {mapOverTasks}
     </div>

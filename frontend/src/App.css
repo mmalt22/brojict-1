@@ -39,10 +39,13 @@
 .App{
   border: 2px red solid;
 }
+.Login{
+  border: 2px blue solid;
+}
 .Todo {
 margin: 0px 10px 0px 10px;
 border: 2px red solid;
 }
-.Add{
+.Add, .Register{
   border: 2px green solid;
 }

@@ -4,6 +4,8 @@ import axios from "axios";
 import "./App.css";
 import Todo from "./components/Todo";
 import Add from "./components/Add";
+import Register from "./components/Register";
+// import Login from "./components/Login";
 
 export default function App() {
   const [tasks, setTasks] = useState([]);
@@ -118,6 +120,22 @@ const filterData = (status) => {
     />
   ));
 
+  // const postNewRegister = (body) => {
+  //   axios
+  //     .post("http://localhost:5000/users/register", body)
+  //     .then((response) => {
+  //       // console.log('RESPONSE: ', response);
+  //       console.log("DATA: ", response.data);
+  //       // setTasks(response.data);
+  //       getData();
+  //       //   ندورها  في قوقل بدال جلب الداتا
+  //       // change react state using spread operator
+  //     })
+  //     .catch((err) => {
+  //       console.log("ERR: ", err);
+  //     });
+  // };
+
   return (
     <div className="App">
       <p>tuwaiq academy</p>
@@ -132,7 +150,10 @@ const filterData = (status) => {
         onClick={() => {
           filterData(false);
         }}>GET PENDING</button>
+        
       {/* <Todo/> */}
+      {/* <button postNewRegister={postNewRegister}>Register</button> */}
+      <Register/>
       {mapOverTasks}
     </div>
   );

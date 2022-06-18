@@ -5,6 +5,7 @@ const cors = require("cors");
 const db = require("./db");
 const Todo = require("./Todo");
 const User = require("./user");
+const Register = require("./Register");
 // console.log(Todo)
 
 // touch .gitignore

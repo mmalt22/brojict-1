@@ -1,6 +1,8 @@
 // import logo from './logo.svg';
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Routes, Route, Link } from "react-router-dom";
+
 import "./App.css";
 import Todo from "./components/Todo";
 import Add from "./components/Add";
@@ -94,11 +96,11 @@ export default function App() {
       });
   };
 
-// uuid اذا اردنا ارقام الايدي توجد مكتبة اسمها 
-  
-// .env ملف الحماية 
+  // uuid اذا اردنا ارقام الايدي توجد مكتبة اسمها
 
-const filterData = (status) => {
+  // .env ملف الحماية
+
+  const filterData = (status) => {
     axios
       .get(`http://localhost:5000/filter?isCompleted=${status}`)
       .then((response) => {
@@ -139,23 +141,41 @@ const filterData = (status) => {
   return (
     <div className="App">
       <p>tuwaiq academy</p>
-      <Add createFunction={postNewTodo} />
-      <button onClick={getData}>GET TASKS</button>
-      <button onClick={deleteTasks}>DELETE COMPLETED TASKS</button>
-      <button
-        onClick={() => {
-          filterData(true);
-        }}>GET DONE</button>
-      <button
-        onClick={() => {
-          filterData(false);
-        }}>GET PENDING</button>
-        
-      {/* <Todo/> */}
-      {/* <button postNewRegister={postNewRegister}>Register</button> */}
-      <Register/>
-      <Login/>
-      {mapOverTasks}
+
+      <Routes>
+        <Route
+          path="/home"
+          element={
+            <div className="Home">
+              <Add createFunction={postNewTodo} />
+              <button onClick={getData}>GET TASKS</button>
+              <button onClick={deleteTasks}>DELETE COMPLETED TASKS</button>
+              <button
+                onClick={() => {
+                  filterData(true);
+                }}
+              >
+                GET DONE
+              </button>
+              <button
+                onClick={() => {
+                  filterData(false);
+                }}
+              >
+                GET PENDING
+              </button>
+
+              {/* <Todo/> */}
+              {/* <button postNewRegister={postNewRegister}>Register</button> */}
+
+              {mapOverTasks}
+             
+            </div>
+          }
+        />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
     </div>
   );
 }

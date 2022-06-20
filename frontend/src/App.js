@@ -5,7 +5,7 @@ import "./App.css";
 import Todo from "./components/Todo";
 import Add from "./components/Add";
 import Register from "./components/Register";
-// import Login from "./components/Login";
+import Login from "./components/Login";
 
 export default function App() {
   const [tasks, setTasks] = useState([]);
@@ -154,6 +154,7 @@ const filterData = (status) => {
       {/* <Todo/> */}
       {/* <button postNewRegister={postNewRegister}>Register</button> */}
       <Register/>
+      <Login/>
       {mapOverTasks}
     </div>
   );

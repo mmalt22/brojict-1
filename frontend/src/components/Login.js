@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 // react router in google
 // 1. read the Docs
@@ -7,13 +8,12 @@ import axios from "axios";
 // - INSTALLATION
 // npm install react-router-dom@6 in frontend
 
-
-export default function Login() {
+export default function Login(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const LoginFunc = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     // عشان الصفحة ماتسوي ريفريش
     const userInfo = {
       email,
@@ -23,6 +23,8 @@ export default function Login() {
       .post(`http://localhost:5000/users/login`, userInfo)
       .then((response) => {
         console.log("DATA", response.data);
+        props.setIsLoggedIn(true);
+        props.setUsername(response.data.username);
       })
       .catch((err) => {
         console.log("err", err);
@@ -51,10 +53,11 @@ export default function Login() {
           }}
           value={password}
         />
-        
+
         <br />
         <input type="submit" value="Login" onClick={LoginFunc} />
       </form>
+      <Link to="/Register">Don't Have an account?</Link>
     </div>
   );
 }

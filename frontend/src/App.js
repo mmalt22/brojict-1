@@ -11,7 +11,8 @@ import Login from "./components/Login";
 
 export default function App() {
   const [tasks, setTasks] = useState([]);
-
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [username, setUsername] = useState("");
   useEffect(() => {
     getData();
   }, []);
@@ -140,8 +141,16 @@ export default function App() {
 
   return (
     <div className="App">
-      <p>tuwaiq academy</p>
+      <p>App </p>
+      <p>NAME: {username}</p>
+      
 
+      <nav>
+        <Link to="/home">Home</Link> {" | "}
+        <Link to="/login">Login</Link> {" | "}
+        <Link to="/register">Register</Link>
+      </nav>
+      <br />
       <Routes>
         <Route
           path="/home"
@@ -169,11 +178,15 @@ export default function App() {
               {/* <button postNewRegister={postNewRegister}>Register</button> */}
 
               {mapOverTasks}
-             
             </div>
           }
         />
-        <Route path="/login" element={<Login />} />
+        <Route
+          path="/login"
+          element={
+            <Login setIsLoggedIn={setIsLoggedIn} setUsername={setUsername} />
+          }
+        />
         <Route path="/register" element={<Register />} />
       </Routes>
     </div>

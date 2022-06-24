@@ -17,6 +17,11 @@ export default function App() {
     getData();
   }, []);
 
+  const loguotFunc = () =>{
+    setIsLoggedIn(false)
+    setUsername("")
+  }
+
   const getData = () => {
     axios
       .get("http://localhost:5000/tasks")
@@ -151,6 +156,7 @@ export default function App() {
         <Link to="/register">Register</Link>
       </nav>
       <br />
+      <button onClick={loguotFunc}>Loguot</button>
       <Routes>
         <Route
           path="/home"

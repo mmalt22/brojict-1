@@ -33,6 +33,7 @@ export default function Login(props) {
 
   return (
     <div className="Login">
+      {/* 
       <form action="">
         <label htmlFor="email">Email: </label>
         <input
@@ -55,11 +56,54 @@ export default function Login(props) {
         />
 
         <br />
-        <input type="submit" value="Login" onClick={LoginFunc} 
-        className="btn btn-success"/>
-        {/* <button type="button" class="btn btn-success">Success</button> */}
+        <input
+          type="submit"
+          value="Login"
+          onClick={LoginFunc}
+          className="btn btn-success"
+        />
+        
+        <Link to="/Register">Don't Have an account?</Link>
+        </form>
+       */}
+      <form action="" className="m-3">
+        <div className="form-floating mb-3">
+          <input
+            type="email"
+            className="form-control"
+            id="floatingInput"
+            placeholder="name@example.com"
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+            value={email}
+          />
+          <label htmlFor="floatingInput">Email address</label>
+        </div>
+        <div className="form-floating">
+          <input
+            type="password"
+            className="form-control"
+            id="floatingPassword"
+            placeholder="Password"
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+            value={password}
+          />
+          <label htmlFor="floatingPassword">Password</label>
+        </div>
+        <br />
+        <input
+          type="submit"
+          value="Login"
+          onClick={LoginFunc}
+          className="btn btn-success"
+        />
+        <Link to="/Register" className="btn btn-link">
+          Don't Have an account?
+        </Link>
       </form>
-      <Link to="/Register">Don't Have an account?</Link>
     </div>
   );
 }

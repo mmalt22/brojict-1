@@ -55,7 +55,9 @@ export default function Login(props) {
         />
 
         <br />
-        <input type="submit" value="Login" onClick={LoginFunc} />
+        <input type="submit" value="Login" onClick={LoginFunc} 
+        className="btn btn-success"/>
+        {/* <button type="button" class="btn btn-success">Success</button> */}
       </form>
       <Link to="/Register">Don't Have an account?</Link>
     </div>

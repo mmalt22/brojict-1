@@ -71,7 +71,7 @@ export default function Register() {
 
           */}
 
-      <form className="row m-2 needs-validation" novalidate>
+      <form className="row m-2 needs-validation" >
         <div className="col-md-4">
           <label htmlFor="email" className="form-label">
             Email:

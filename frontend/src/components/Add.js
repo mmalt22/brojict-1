@@ -7,12 +7,14 @@ export default function Add(props) {
         props.createFunction({title:newTitle,isCompleted:false});
     }
   return (
-    <div className='Add'>
-        <input type="text" placeholder='Write New Title Here...'
+    <div className=''>
+      
+        <input type="text" className="form-control mb-3" placeholder='Write New Title Here...'
         onChange={(e)=>{
-            setNewTitle(e.target.value)
+            setNewTitle(e.target.value) 
         }}/>
-        <button onClick={createNewTodo}>Create New Todo</button>
+        <button onClick={createNewTodo} className="btn btn-success" >Create New Todo</button>
+        
     </div>
   )
 }

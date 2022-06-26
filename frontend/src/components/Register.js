@@ -125,12 +125,12 @@ export default function Register() {
           </div>
         </div>
         
-        <div className="col-12">
+        <div className="m-3">
           <input
             type="submit"
             value="Register"
             onClick={registerFunc}
-            className="btn btn-primary"
+            className="btn btn-success"
           />
           <Link to="/Login" className="btn btn-link"> Have an account?</Link>
         </div>

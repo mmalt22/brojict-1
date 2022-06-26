@@ -156,7 +156,7 @@ export default function App() {
       </nav>
       <br /> */}
 
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav className="navbar navbar-expand-lg navbar-light bg-light m-3">
         <div className="container-fluid">
           <a className="navbar-brand" href="#">
             Todos
@@ -194,19 +194,26 @@ export default function App() {
         </div>
       </nav>
 
-      <button onClick={loguotFunc}>Loguot</button>
+      <button onClick={loguotFunc} className="btn btn-outline-danger">
+        Loguot
+      </button>
       <Routes>
         <Route
           path="/home"
           element={
-            <div className="Home">
-              <Add createFunction={postNewTodo} />
-              <button onClick={getData}>GET TASKS</button>
-              <button onClick={deleteTasks}>DELETE COMPLETED TASKS</button>
+            <div className="Home m-3">
+              
+              <button onClick={getData} className="btn btn-outline-primary m-2">
+                GET TASKS
+              </button>
+              <button onClick={deleteTasks} className="btn btn-outline-danger m-2">
+                DELETE COMPLETED TASKS
+              </button>
               <button
                 onClick={() => {
                   filterData(true);
                 }}
+                className="btn btn-outline-success m-2"
               >
                 GET DONE
               </button>
@@ -214,16 +221,17 @@ export default function App() {
                 onClick={() => {
                   filterData(false);
                 }}
+                className="btn btn-outline-warning"
               >
                 GET PENDING
               </button>
 
-              
-
               {/* <Todo/> */}
               {/* <button postNewRegister={postNewRegister}>Register</button> */}
-
+              <Add createFunction={postNewTodo} />
+              <div className="list-group">
               {mapOverTasks}
+              </div>
             </div>
           }
         />

@@ -11,6 +11,8 @@ import { Link } from "react-router-dom";
 export default function Login(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loginStatus, setLoginStatus] = useState(null);
+  const [loginMessage, setLoginMessage] = useState("");
 
   const LoginFunc = (e) => {
     e.preventDefault();
@@ -22,12 +24,18 @@ export default function Login(props) {
     axios
       .post(`http://localhost:5000/users/login`, userInfo)
       .then((response) => {
+        setLoginStatus(response.status);
+        setLoginMessage(response.data.message);
         console.log("DATA", response.data);
         props.setIsLoggedIn(true);
         props.setUsername(response.data.username);
       })
       .catch((err) => {
         console.log("err", err);
+        setLoginStatus(err.response.status);
+        setLoginMessage(err.response.data.message);
+        props.setIsLoggedIn(false);
+        props.setUsername(null);
       });
   };
 
@@ -94,6 +102,21 @@ export default function Login(props) {
           <label htmlFor="floatingPassword">Password</label>
         </div>
         <br />
+            {/* التحقق من  الايميل و الباسورد */}
+        { loginStatus === 200  &&  (
+        <div class="alert alert-success" role="alert">
+          {loginMessage}
+        </div>
+            )}
+
+            {(loginStatus === 400 || loginStatus===404) && (
+               (
+                <div class="alert alert-danger" role="alert">
+                {loginMessage}
+                </div>
+                )
+             )}
+              {/* التحقق من  الايميل و الباسورد */}
         <input
           type="submit"
           value="Login"
